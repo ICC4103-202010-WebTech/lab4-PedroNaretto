@@ -23,7 +23,7 @@ class Ticket < ApplicationRecord
     def maximum
       ev = self.ticket_type.event.event_venue
       es = self.ticket_type.event.event_stat
-      if es.tickets_sold == ev.capacity
+      if es.tickets_sold >= ev.capacity
         puts("Error: Tickets are sold out")
         errors.add(:base, "Tickets are sold out")
         throw(:abort)
